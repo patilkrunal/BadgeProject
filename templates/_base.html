@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicons -->
+    {% comment %} <link href="{% static 'images/favicon.png' %}" rel="icon">
+    <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon"> {% endcomment %}
+
+    {% block css %}
+      <!-- Bootstrap CSS File -->
+      <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+      <!-- Libraries CSS Files -->
+      <link href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+      <link href="{% static 'css/templatemo-grad-school.css' %}" rel="stylesheet">
+      <link href="{% static 'css/owl.css' %}" rel="stylesheet">
+      <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
+      
+      <!-- Main Stylesheet File -->
+      {% comment %} <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <link href="{% static 'css/base.css' %}" rel="stylesheet"> {% endcomment %}
+    {% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Grad School HTML5 Template</title>
+    
+    <!-- TemplateMo 557 Grad School  https://templatemo.com/tm-557-grad-school -->
+  
+  </head>
+
+<body id="page-top">
+
+    {% include '_navbar.html' %}
+
+    {% block content %}
+    {% endblock content %}
+    
+    {% include '_footer.html' %}
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+
+    {% block javascript %}
+      <!-- JavaScript Libraries -->
+      <script src="{% static 'jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/isotope.min.js' %}"></script>
+      <script src="{% static 'js/owl-carousel.js' %}"></script>
+      <script src="{% static 'js/lightbox.js' %}"></script>
+      <script src="{% static 'js/tabs.js' %}"></script>
+      <script src="{% static 'js/video.js' %}"></script>
+      <script src="{% static 'js/slick-slider.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+      
+      <!-- Template Main Javascript File -->
+      {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
+    {% endblock javascript %}
+</body>
+</html>

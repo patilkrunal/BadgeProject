@@ -14,5 +14,14 @@ steps to setup localenvironment
 Open the link in browser. You succeeded in creating local setup.
 
 9. activate venv by
-$ cd home/kp-ubuntu<your system username>/.local/share/virtualenvs
-$ source Badging_system_krunal-Qbp0rnPl/bin/activate
+$ source //home/<your system username>/.local/share/virtualenvs/Badging_system_krunal-Qbp0rnPl/bin/activate
+eg.
+
+$ source //home/kp-ubuntu/.local/share/virtualenvs/Badging_system_krunal-Qbp0rnPl/bin/activate
+
+10. git init (install git)
+11. git status
+12. git add .
+13. git commit -m "msg"
+14. git remote add <reponame> <repo url>
+Eg. git remote add Badging_system_krunal https://github.com/gitkp11/Badging_system_krunal.git
