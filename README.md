@@ -25,3 +25,4 @@ $ source //home/kp-ubuntu/.local/share/virtualenvs/Badging_system_krunal-Qbp0rnP
 13. git commit -m "msg"
 14. git remote add <reponame> <repo url>
 Eg. git remote add Badging_system_krunal https://github.com/gitkp11/Badging_system_krunal.git
+15. 
