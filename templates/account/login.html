@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+<div id="home" class="intro route bg-image" style="background-image: url({% static 'images/coming-soon-bg.jpg' %})">
+  <div class="overlay-itro"></div>
+  <div class="intro-content display-table">
+    <div class="table-cell">
+      <div class="container">
+        <h2 style="color:white">Log in</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button class="btn btn-success" type="submit">Log in</button>
+        </form>
+        <a href="{% url 'account_reset_password' %}" style="color:white">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

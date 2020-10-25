@@ -18,7 +18,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", '*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -29,10 +29,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+INSTALLED_APPS += [
+    'django.contrib.sites',
+
+    # Third-party
+    'allauth',
+    'allauth.account',
+    'crispy_forms',
 
     # Local
     'home',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,11 +137,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
 """ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" """
 
-""" # DJANGO-CRISPY-FORMS CONFIGS
+# DJANGO-CRISPY-FORMS CONFIGS
 # ------------------------------------------------------------------------------
 # https://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-
+"""
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
@@ -155,11 +166,13 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = 'home'
 # https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+"""
 # https://django-allauth.readthedocs.io/en/latest/installation.html?highlight=backends
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
@@ -167,4 +180,4 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
- """
+
