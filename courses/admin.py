@@ -1,7 +1,7 @@
 from django.contrib import admin
-from courses.models import Course,Lesson,Category
-# Register your models here.
+
+from .models import Branch_of_study, Course
+
 
 admin.site.register(Course)
-admin.site.register(Lesson)
-admin.site.register(Category)
+admin.site.register(Branch_of_study)
