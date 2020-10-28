@@ -26,3 +26,35 @@ $ source //home/kp-ubuntu/.local/share/virtualenvs/Badging_system_krunal-Qbp0rnP
 14. git remote add <reponame> <repo url>
 Eg. git remote add Badging_system_krunal https://github.com/gitkp11/Badging_system_krunal.git
 15. 
+
+
+
+
+How to use it
+$ # Get the code
+$ git clone https://github.com/app-generator/django-dashboard-dattaable.git
+$ cd django-dashboard-dattaable
+$
+$ # Virtualenv modules installation (Unix based systems)
+$ virtualenv env
+$ source env/bin/activate
+$
+$ # Virtualenv modules installation (Windows based systems)
+$ # virtualenv env
+$ # .\env\Scripts\activate
+$
+$ # Install modules
+$ # SQLIte version
+$ pip3 install -r requirements.txt
+$
+$ # Create tables
+$ python manage.py makemigrations
+$ python manage.py migrate
+$
+$ # Start the application (development mode)
+$ python manage.py runserver # default port 8000
+$
+$ # Start the app - custom port 
+$ # python manage.py runserver 0.0.0.0:<your_port>
+$
+$ # Access the web app in browser: http://127.0.0.1:8000/
