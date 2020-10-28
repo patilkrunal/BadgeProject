@@ -1,12 +1,11 @@
 from pathlib import Path
-import os
+import os, sys
 
 # GENERAL
 # ------------------------------------------------------------------------------
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -42,8 +41,8 @@ INSTALLED_APPS += [
     # Local
     'home',
     'courses',
-    'users',
-    'memberships'
+    'memberships',
+    'tutor'
 ]
 
 SITE_ID = 1
