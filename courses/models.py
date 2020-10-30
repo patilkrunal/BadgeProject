@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-#from memberships.models import Membership
-
 
 class Branch_of_study(models.Model):
     branch_of_study = models.CharField(max_length=150)

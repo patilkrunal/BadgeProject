@@ -42,7 +42,7 @@ INSTALLED_APPS += [
     'home',
     'courses',
     'memberships',
-    'tutor'
+    'users'
 ]
 
 SITE_ID = 1
@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 # URLS
 # ------------------------------------------------------------------------------
