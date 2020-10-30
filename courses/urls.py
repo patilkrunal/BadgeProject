@@ -14,3 +14,6 @@ urlpatterns = [
     path('courses/', CourseListView.as_view(), name='course_list'),
     path('courses/<slug>/', CourseDetailView.as_view(), name='course_detail')
 ]
+
+
+

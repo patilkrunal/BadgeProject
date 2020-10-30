@@ -8,7 +8,7 @@
 <div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}">
   <div class="container">
     <div class="site-breadcrumb">
-      <a href="#">Home</a>
+      <a href="{%url 'home:home' %}">Home</a>
       <span>Courses</span>
     </div>
   </div>
@@ -37,6 +37,19 @@
   </div>
 </section>
 <!-- search section end -->
+
+
+
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/1.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="{%url 'home:home' %}">Home</a>/
+      <a>{{course.title}}</a>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
 
 
 <!-- single course section -->

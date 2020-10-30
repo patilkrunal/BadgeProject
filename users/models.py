@@ -10,7 +10,7 @@ class Profile(models.Model):
     is_teacher = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username + ' Profile'
+        return self.user.username + '\'s Profile'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -20,3 +20,4 @@ class Profile(models.Model):
             output_size = (200,200)
             img.thumbnail(output_size)
             img.save(self.profile_pic.path)
+

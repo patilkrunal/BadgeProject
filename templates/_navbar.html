@@ -66,41 +66,26 @@
 
   <section class="navbarsection"> 
     <!--header-->
-    <header class="main-header clearfix" role="header" style="position: static;">
+    {% comment %} <header class="main-header clearfix" role="header" style="position: static;"> {% endcomment %}
+    <header class="main-header clearfix" role="header">
       <div class="logo">
-        <a href="#"><em>Grad</em> School</a>
+        <a href="{%url 'home:home' %}"><em>Grad</em> School</a>
       </div>
       <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
       <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
-          <li><a class="js-scroll active" href="#section1">Home</a></li>
-          <li><a class="js-scroll active" href="#section4">Courses</a></li>
+          <a class="js-scroll active" href="{%url 'home:home' %}">Home</a>
+          <li><a class="js-scroll active" href="{%url 'courses:course_list' %}">Courses</a></li>
           <li><a class="js-scroll active" href="#section6">Contact</a></li>
-          {% comment %} <li>
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.email }} 
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                <a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
-                </div>
-              </li>
-            {% else %}
-              <form class="form-inline ml-auto">
-                <li><a href="{% url 'account_login' %}" class="btn btn-outline-secondary">Log in</a></li>
-                <li><a href="{% url 'account_signup' %}" class="btn btn-primary ml-2">Sign up</a></li>
-              </form>
-            {% endif %}
-          </li> {% endcomment %}
+
+
 
 
           <li>
             {% if user.is_authenticated %}
               <li class="has-submenu"><a href="#section1">{{ user.username }}</a>
                 <ul class="sub-menu">
+                  <li><a href="{%url 'users:profile' user.username %}">Profile</a></li>
                   <li><a href="{% url 'account_change_password' %}">Change password</a></li>
                   <li><a href="{% url 'account_logout' %}">Log out</a></li>
                 </ul>
