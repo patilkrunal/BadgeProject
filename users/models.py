@@ -4,13 +4,13 @@ from PIL import Image
 
 
 class Profile(models.Model):
-    tutor = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     bio = models.CharField(max_length=200)
     profile_pic = models.ImageField(default='default.jpg', upload_to = 'profile_pics')
     is_teacher = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.tutor.username + ' Profile'
+        return self.user.username + ' Profile'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
