@@ -37,6 +37,7 @@ INSTALLED_APPS += [
     'allauth.socialaccount',
     'allauth',
     'crispy_forms',
+    
 
     # Local
     'home',

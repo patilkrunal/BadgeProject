@@ -31,3 +31,4 @@ def Profile(request, username=None):
         'user_membership':user_membership
     }
     return render(request,'profile/profile.html',context)
+
