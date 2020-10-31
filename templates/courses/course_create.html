@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+
+{% block content %}
+    
+  <div><h1>.</h1></div>
+  <div><h1>.</h1></div>
+
+  <section class='container'>
+    <div class="create-course">
+      <h2>Create an Awesome New courses</h2>
+      <form class="site-form" action="{% url 'courses:create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Create">
+      </form>
+    </div>
+
+    {% comment %} <script src="{% static 'js/slugify.js' %}"></script> {% endcomment %}
+    
+  </section>
+{% endblock %}

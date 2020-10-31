@@ -1,9 +1,9 @@
 from django.urls import path
 from .views import StudentsListView
 
-
 app_name = 'memberships'
 
 urlpatterns = [
-    path('memberships/', StudentsListView.as_view(), name='select_membership')
+    path('addmembers/', StudentsListView.add_members, name='add_members'),
+    # path('redirect', CourseDetailRedirect.as_view(), name='memberships_redirect'),
 ]

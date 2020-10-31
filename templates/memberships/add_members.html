@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+  <div><h1>.</h1></div>
+  <div><h1>.</h1></div>
+
+  <section class='container'>
+    <div class="add-members">
+      <h2>add members</h2>
+      <form class="site-form" action="{% url 'memberships:add_members' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Create">
+      </form>
+    </div>
+
+    {% comment %} <script src="{% static 'js/slugify.js' %}"></script> {% endcomment %}
+    
+  </section>
+{% endblock %}
