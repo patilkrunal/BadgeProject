@@ -4,34 +4,24 @@
 {% block content %}
 
 
-<!-- Page info -->
-<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}">
-  <div class="container">
-    <div class="site-breadcrumb">
-      <a href="{%url 'home:home' %}">Home</a>
-      <span>Courses</span>
-    </div>
-  </div>
-</div>
-<!-- Page info end -->
+  <div><h1>.</h1></div>
+  <div><h1>.</h1></div>
 
 
 <!-- search section -->
-<section class="search-section ss-other-page">
-  <div class="container">
-    <div class="search-warp">
-      <div class="section-title text-white">
-        <h2><span>Search your course</span></h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <!-- search form -->
-          <form class="course-search-form">
-            <input type="text" placeholder="Course">
-            <input type="text" class="last-m" placeholder="Category">
-            <button class="site-btn btn-dark">Search Couse</button>
-          </form>
-        </div>
+<section class="search-section ss-other-page container">
+  <div class="search-warp">
+    <div class="section-title text-white">
+      <h2><span>Search your course</span></h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <!-- search form -->
+        <form class="course-search-form">
+          <input type="text" placeholder="Course">
+          <input type="text" class="last-m" placeholder="Category">
+          <button class="site-btn btn-dark">Search Course</button>
+        </form>
       </div>
     </div>
   </div>
@@ -39,98 +29,59 @@
 <!-- search section end -->
 
 
-
-<!-- Page info -->
-<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/1.jpg' %}">
-  <div class="container">
-    <div class="site-breadcrumb">
-      <a href="{%url 'home:home' %}">Home</a>/
-      <a>{{course.title}}</a>
-    </div>
-  </div>
-</div>
-<!-- Page info end -->
-
-
 <!-- single course section -->
-<section class="single-course spad pb-0">
-  <div class="container">
-    <div class="course-meta-area">
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <div class="course-note">Featured Course</div>
-          <h3>{{course.title|capfirst}}</h3>
-          <div class="course-metas">
-            <div class="course-meta">
-              <div class="course-author">
-                <div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-                <h6>Teacher</h6>
-                <p>{{course.creator|capfirst}}, <span>Developer</span></p>
-              </div>
-            </div>
-            <div class="course-meta">
-              <div class="cm-info">
-                <h6>Category</h6>
-                <p>{{course.category}}</p>
-              </div>
-            </div>
-            <div class="course-meta">
-              <div class="cm-info">
-                <h6>Students</h6>
-                <p>120 Registered Students</p>
-              </div>
-            </div>
-            <div class="course-meta">
-              <div class="cm-info">
-                <h6>Reviews</h6>
-                <p>2 Reviews <span class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star is-fade"></i>
-                </span></p>
-              </div>
-            </div>
-          </div>
-          <a href="#lessons" class="site-btn price-btn">View Lessons</a>
-          <a href="#" class="site-btn buy-btn">Enroll For this Course</a>
-        </div>
-      </div>
-    </div>
-    <img src="img/courses/single.jpg" alt="" class="course-preview">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1 course-list">
-        <div class="cl-item">
-          <h4>Course Description</h4>
-          <p>{{course.description}}</p>
-        </div>
-        <div class="cl-item">
-          <h4>Certification</h4>
-          <p>All our certifications are free , This means that you get a free certification on course completion</p>
-        </div>
-        <div class="cl-item">
-          <h4>The Instructor</h4>
-          <p>Mr {{course.creator}}, is a really talented Person and has bagged various certifications, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
-        </div>
-        <div class="cl-item" id="lessons">
-          <h4 >Lessons In This Course</h4>
-          {% if course.lessons != None  %}
-            {% for lesson in course.lessons %}
-              <h5 class="pb-3">Lesson {{lesson.position}} <a href="{{ lesson.get_absolute_url }}"><span class="pl-4">{{lesson.title}}</span></a></h5>
-            {% endfor %}
-          {% endif %}
-          {% if object.lessons == '' %}
-            <h4>There are no lessons for this course Yet , check back later</h4>
-          {% endif %}
+<section class="single-course spad pb-0 container">
+  <img src="img/courses/single.jpg">
 
-        </div>
-      </div>
-    </div>
+  <div class="row">
+    <div data-setbg="img/authors/2.jpg"></div>
+    <p> Featured Course <strong> {{course.title|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <p> Tutor <strong> {{course.creator|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <p> Students <strong> 120 Registered Students </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  
+    <p>Reviews <span class="rating">
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star"></i>
+      <i class="fa fa-star is-fade"></i>
+    </span></p>
   </div>
+  
+  <div class="row">
+    <div>
+      <p><h4>Course Description</h4>
+      {{course.description}}</p>
+
+      <p><h4>The Instructor</h4>
+      Mr {{course.creator}}, is a really talented Person and has bagged various certifications, 
+      molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+      massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed 
+      bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum 
+      dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, 
+      molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+      massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
+    </div>
+
+    <h4>Members In This Course</h4>
+    <h6>.</h6>
+    <table border="1" style="width:800px">      
+      {% if student_membership %}
+        {% for l in student_membership %}
+          {% if l.course.pk == course.pk %}
+            <tr>
+              <td><ul>{{ l.student_name}}</ul></td>
+              <td><ul>{{ l.email_id }}</ul></td>
+            </tr>
+          {% endif %}
+        {% endfor %} 
+      {% else %}
+        <p>There are no members.</p>
+      {% endif %}
+    </table>
+  </div>
+  
 </section>
 <!-- single course section end -->
-
 
 <!-- Page end -->
 {% endblock %}

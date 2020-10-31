@@ -4,12 +4,12 @@
 {% endblock %} {% endcomment %}
 
 {% block content %}
+<div class="container">
+  <div><h1>.</h1></div>
+  <div><h1>.</h1></div>
 
   <section class="section10">
-
-      <h1>HELLO Membership</h1>
-      <button type="button" onclick="alert('Hello world!')">Click Me!</button>
-      
+  
       <table border="1" style="width:800px">
         <tr>
           {% if student_membership_qs %}
@@ -39,6 +39,8 @@
         </tr>
       </table>
   </section>
+
+</div>
 {% endblock content %}
 
 
@@ -111,7 +113,3 @@
     </div> 
 
 {% endblock content %} {% endcomment %}
-
-
-
-
