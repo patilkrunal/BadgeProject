@@ -35,12 +35,12 @@ class CourseListView(ListView):
     @login_required
     def course_create(self, request):
         if request.method == 'POST':
-                form = forms.CreateCourse(request.POST, request.FILES)
-                if form.is_valid():
-                    instance = form.save(commit=False)
-                    instance.author = request.user
-                    instance.save()
-                    return redirect('courses:course_list')
+            form = forms.CreateCourse(request.POST, request.FILES)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.author = request.user
+                instance.save()
+                return redirect('courses:course_list')
         else:
             form = forms.CreateCourse()
         return render(request, 'courses/course_create.html', { 'form': form })
@@ -59,5 +59,3 @@ class CourseDetailView(DetailView):
         context['branches'] = Branch_of_study.objects.all()
 
         return context
-
-

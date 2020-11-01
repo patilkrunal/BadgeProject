@@ -1,0 +1,16 @@
+<h1>Search Results</h1>
+
+<ul>
+  
+  {% for member in object_list %}
+    <li>
+      {{ member.student_name }}, {{ member.email_id }}, {{ member.id }}, {{ member.course }}
+      
+      <form method="post" action="{% url 'memberships:search_submit' %}">
+          {% csrf_token %}
+          <button type="submit" value="Submit">Download Badge</button>
+      </form>
+
+    </li>
+  {% endfor %}
+</ul>

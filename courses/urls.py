@@ -4,7 +4,7 @@ from .views import (HomeView,
                     AboutView,
                     ContactView,
                     CourseListView,
-                    CourseDetailView,
+                    CourseDetailView
                     )
 
 app_name = 'courses'
@@ -15,6 +15,3 @@ urlpatterns = [
     path('courses/create/', CourseListView.course_create, name='create'),
     path('courses/<slug>/', CourseDetailView.as_view(), name='course_detail')
 ]
-
-
-

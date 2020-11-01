@@ -1,7 +1,8 @@
-from django.views import generic
-from django.shortcuts import render, redirect, reverse
-from django.views.generic import RedirectView
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
+from django.views import generic
+import csv
 
 from .models import StudentMembership
 from courses.models import Course
@@ -46,3 +47,148 @@ class StudentsListView(generic.ListView):
 #           course = Course.objects.get(pk=1)
         
 #         return reverse('courses:course_detail', course.slug)
+
+
+from django.db.models import Q
+class SearchResultsView(generic.ListView):
+    model = StudentMembership
+    template_name = 'memberships/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = StudentMembership.objects.filter(
+            Q(email_id__icontains=query) | Q(student_name__icontains=query)
+        )
+
+        output_file_path = '/home/kp-ubuntu/Desktop/hackathon/GLOBALSHALA_hackathon/Badging_system_krunal/input.csv'
+        with open(output_file_path, 'w', newline='') as file:
+            writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+
+            # response = HttpResponse(content_type='text/csv')
+            # response['Content-Disposition'] = 'attachment; filename="file.csv"'
+            # writer = csv.writer(response)
+            for member in object_list:
+                writer.writerow([member.student_name, member.email_id, member.id, member.course])
+
+        return object_list
+
+    def press_my_buttons(request):
+        if request.POST:
+            # Run your script here
+            print("Got the POST request")
+        return render(request, 'memberships/search_results.html')
+
+
+def submit(request):
+    import PIL
+    import os
+    import cv2 as cv
+    from BadgeProject.settings import BASE_DIR
+
+    # function to calculate the start for each blank depending on size of string to be filled
+    def calc_start(center,arr,size_of_font):
+        length = len(arr)
+        center[0] = int(center[0] - size_of_font * (length/2))
+        return center
+
+    base_destination = 'static/images/Badges/teams/'
+    BASE_DESTINATION= os.path.join(BASE_DIR,base_destination)
+    
+    included_ext = ['csv']
+    
+    # returns all csv files in the current directory
+    arr=[fn for fn in os.listdir() if any(fn.endswith(ext) for ext in included_ext)]
+    no_of_files = len(arr)
+
+    #start printing
+    for i in range(no_of_files):
+        try:
+            group = arr[i]
+            print('*****   ' + arr[i] + '   *****')
+
+            # with open(arr[i]) as csv_file:
+            #     csv_reader = csv.reader(csv_file, delimiter=',')
+            #     for row in csv_reader:
+            #         print(row)
+            # print('//////////////////////////////////////////')
+            
+            data=[]
+
+            name_list=[]
+            email_list=[]
+            unique_id_list=[]
+            course_list = []
+
+            with open(group) as csv_file:
+                csv_reader = csv.reader(csv_file, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL)
+                for row in csv_reader:
+                    data.append(row)
+
+                    name_list.append(row[0])
+                    email_list.append(row[1])
+                    unique_id_list.append(row[2])
+                    course_list.append(row[3])
+                    # print(row)
+
+            print('==============')
+            print(data)
+            print(name_list)
+            print(email_list)
+            print(unique_id_list)
+            print(course_list)
+            print('==============')
+            
+            # OPENCV2 CONFIGURATION FILES
+            from os import environ
+            environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+            environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+            environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+            environ["QT_SCALE_FACTOR"] = "1"
+
+            #print certificates
+            for i in range(0, len(name_list)):
+                try:
+                    #enter destination
+                    destination = BASE_DESTINATION + course_list[i] + '/'
+                    if not os.path.exists(destination):
+                        os.makedirs(destination)
+
+                    #enter template
+                    imgpath = "/home/kp-ubuntu/Desktop/hackathon/GLOBALSHALA_hackathon/Badging_system_krunal/static/images/Badges/achievementsports.jpg"
+                    img = cv.imread(imgpath, 0)
+                    
+                    # # Displaying the image 
+                    # cv.imshow('image', img)
+                    # cv.waitKey(0)
+
+                    #enter the centers; this can be found using paint
+                    center_1 = [1800,1375] #name
+                    center_2 = [1800,1540] #college
+                    center_3 = [1430,1715] #position like first/second
+                    center_4 = [2535,1715] #sport
+
+                    font = cv.FONT_HERSHEY_TRIPLEX
+                    #font = cv.FONT_HERSHEY_SCRIPT_COMPLEX
+                    size_of_font = 40 
+
+                    #calculating starts of each blank
+                    start_1 = calc_start(center_1,name_list[i],size_of_font)
+                    start_2 = calc_start(center_2,email_list[i],size_of_font)
+                    start_3 = calc_start(center_3,unique_id_list[i],size_of_font)
+                    start_4 = calc_start(center_4,course_list[i],size_of_font)
+
+                    cv.putText(img,name_list[i],tuple(start_1), font, 2,(0,0,0),2,cv.LINE_AA)
+                    cv.putText(img,email_list[i],tuple(start_2), font, 2,(0,0,0),2,cv.LINE_AA)
+                    cv.putText(img,unique_id_list[i],tuple(start_3), font, 2,(0,0,0),2,cv.LINE_AA)
+                    cv.putText(img,course_list[i],tuple(start_4), font, 2,(0,0,0),2,cv.LINE_AA)
+
+                    cv.imwrite(destination+ name_list[i] + '_' + unique_id_list[i] + '.jpg',img)
+
+                    print('***************************************')
+                    print('***    SUCCESS IN CREATING BADGE    ***')
+                    print('***************************************')
+                    # print(f"{i+1}/{len(name)}")
+                except:
+                    print("Something went wrong")
+        except:
+            print(f"file is not proper format: {arr[i]}")
