@@ -2,8 +2,13 @@ from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import RedirectView
 from django.views import generic
-import csv
 
+import csv
+import os
+import PIL
+import cv2 as cv
+
+from BadgeProject.settings import BASE_DIR
 from .models import StudentMembership
 from courses.models import Course
 from . import forms
@@ -60,13 +65,10 @@ class SearchResultsView(generic.ListView):
             Q(email_id__icontains=query) | Q(student_name__icontains=query)
         )
 
-        output_file_path = '/home/kp-ubuntu/Desktop/hackathon/GLOBALSHALA_hackathon/Badging_system_krunal/input.csv'
+        output_file_path = BASE_DESTINATION= os.path.join(BASE_DIR,"input.csv")
         with open(output_file_path, 'w', newline='') as file:
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
-            # response = HttpResponse(content_type='text/csv')
-            # response['Content-Disposition'] = 'attachment; filename="file.csv"'
-            # writer = csv.writer(response)
             for member in object_list:
                 writer.writerow([member.student_name, member.email_id, member.id, member.course])
 
@@ -80,20 +82,13 @@ class SearchResultsView(generic.ListView):
 
 
 def submit(request):
-    import PIL
-    import os
-    import cv2 as cv
-    from BadgeProject.settings import BASE_DIR
-
     # function to calculate the start for each blank depending on size of string to be filled
     def calc_start(center,arr,size_of_font):
         length = len(arr)
         center[0] = int(center[0] - size_of_font * (length/2))
         return center
 
-    base_destination = 'static/images/Badges/teams/'
-    BASE_DESTINATION= os.path.join(BASE_DIR,base_destination)
-    
+    BASE_DESTINATION= os.path.join(BASE_DIR,"static/images/Badges/teams/")
     included_ext = ['csv']
     
     # returns all csv files in the current directory
@@ -112,8 +107,6 @@ def submit(request):
             #         print(row)
             # print('//////////////////////////////////////////')
             
-            data=[]
-
             name_list=[]
             email_list=[]
             unique_id_list=[]
@@ -121,17 +114,14 @@ def submit(request):
 
             with open(group) as csv_file:
                 csv_reader = csv.reader(csv_file, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL)
+                
                 for row in csv_reader:
-                    data.append(row)
-
                     name_list.append(row[0])
                     email_list.append(row[1])
                     unique_id_list.append(row[2])
                     course_list.append(row[3])
-                    # print(row)
 
             print('==============')
-            print(data)
             print(name_list)
             print(email_list)
             print(unique_id_list)
@@ -154,8 +144,8 @@ def submit(request):
                         os.makedirs(destination)
 
                     #enter template
-                    imgpath = "/home/kp-ubuntu/Desktop/hackathon/GLOBALSHALA_hackathon/Badging_system_krunal/static/images/Badges/achievementsports.jpg"
-                    img = cv.imread(imgpath, 0)
+                    imgpath = os.path.join(BASE_DIR,"static/images/Badges/achievementsports.jpg")
+                    img = cv.imread(imgpath, 1)
                     
                     # # Displaying the image 
                     # cv.imshow('image', img)
@@ -182,12 +172,25 @@ def submit(request):
                     cv.putText(img,unique_id_list[i],tuple(start_3), font, 2,(0,0,0),2,cv.LINE_AA)
                     cv.putText(img,course_list[i],tuple(start_4), font, 2,(0,0,0),2,cv.LINE_AA)
 
-                    cv.imwrite(destination+ name_list[i] + '_' + unique_id_list[i] + '.jpg',img)
+                    img_path = str(destination) + str(name_list[i]) + '_' + str(unique_id_list[i]) + '.jpg'
+                    cv.imwrite(img_path, img)
 
                     print('***************************************')
                     print('***    SUCCESS IN CREATING BADGE    ***')
                     print('***************************************')
                     # print(f"{i+1}/{len(name)}")
+
+                    img_path1="/".join( img_path.split('/')[-5:] )
+                    context = {
+                        'img_url': img_path1
+                    }
+                    
+                    print('***************************************')
+                    print(img_path1)
+                    print('***************************************')
+
+                    return render(request,'memberships/view_badge.html',context)
+
                 except:
                     print("Something went wrong")
         except:
