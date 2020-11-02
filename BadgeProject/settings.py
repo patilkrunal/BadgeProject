@@ -43,7 +43,8 @@ INSTALLED_APPS += [
     'home',
     'courses',
     'memberships',
-    'users'
+    'users',
+    'qrcodeapp'
 ]
 
 SITE_ID = 1

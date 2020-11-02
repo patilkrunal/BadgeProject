@@ -33,7 +33,7 @@ class CourseListView(ListView):
     model = Course
 
     @login_required
-    def course_create(self, request):
+    def course_create(request):
         if request.method == 'POST':
             form = forms.CreateCourse(request.POST, request.FILES)
             if form.is_valid():
@@ -57,5 +57,5 @@ class CourseDetailView(DetailView):
         context['student_membership'] = StudentMembership.objects.all()
         context['courses'] = Course.objects.all()
         context['branches'] = Branch_of_study.objects.all()
-
+        
         return context

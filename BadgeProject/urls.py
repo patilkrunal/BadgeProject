@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('courses.urls',namespace='courses')),
     path('', include('memberships.urls',namespace='memberships')),
     path('', include('users.urls',namespace='users')),
+    path('', include(('qrcodeapp.urls', 'qrcodeapp'), namespace='qrcodeapp')),
     path('accounts/', include('allauth.urls')),
 ]
 

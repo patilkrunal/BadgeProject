@@ -37,14 +37,8 @@
     <div data-setbg="img/authors/2.jpg"></div>
     <p> Featured Course <strong> {{course.title|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <p> Tutor <strong> {{course.creator|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <p> Students <strong> 120 Registered Students </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  
-    <p>Reviews <span class="rating">
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star is-fade"></i>
-    </span></p>
+    <p> Students <strong> {{ student_membership.all.count }} Registered Students </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <p>Reviews <span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star is-fade"></i></span></p>
   </div>
   
   <div class="row">
@@ -62,9 +56,11 @@
       massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
     </div>
 
-    <button class="site-btn btn-dark">
-      <a href="{% url 'memberships:add_members' %}" class="highlight">Add members</a>
-    </button>
+    {% if user.is_authenticated %}
+      <button class="site-btn btn-dark">
+        <a href="{% url 'memberships:add_members' %}" class="highlight">Add members</a>
+      </button>
+    {% endif %}
 
     <h4>Members In This Course</h4>
     <h6>.</h6>
@@ -85,7 +81,5 @@
   </div>
   
 </section>
-<!-- single course section end -->
 
-<!-- Page end -->
 {% endblock %}

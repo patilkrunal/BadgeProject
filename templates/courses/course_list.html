@@ -29,9 +29,11 @@
     </section>
     <!-- search section end -->
 
-    <button class="site-btn btn-dark">
-      <a href="{% url 'courses:create' %}" class="highlight">Add Course</a>
-    </button>
+    {% if user.is_authenticated %}
+      <button class="site-btn btn-dark">
+        <a href="{% url 'courses:create' %}" class="highlight">Add Course</a>
+      </button>
+    {% endif %}
 
     <div>
       <h3>All Courses</h3>
