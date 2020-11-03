@@ -1,5 +1,6 @@
 from django.urls import path
-from memberships.views import StudentsListView, SearchResultsView, badge_generator_view
+from .views import StudentsListView, SearchResultsView
+from qrcodeapp.views import badge_generator_view
 
 app_name = 'memberships'
 

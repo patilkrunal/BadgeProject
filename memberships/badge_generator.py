@@ -69,7 +69,7 @@ def generate_badge(request):
                 try:
                     
                     #enter badge image template
-                    imgpath = os.path.join(BASE_DIR,"static/images/Badges/qrcodeimage.jpg")
+                    imgpath = os.path.join(BASE_DIR,"static/images/Badges/input_image.jpg")
                     img = cv.imread(imgpath, 1)
 
                     #enter the centers; this can be found using ms-paint

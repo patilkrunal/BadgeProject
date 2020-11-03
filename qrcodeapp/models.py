@@ -17,25 +17,25 @@ class QRcodeModel(models.Model):
         return str(self.name)
 
     def save(self, *args, **kwargs):
-        url = "http://127.0.0.1:8000/static/images/Badges/"  # http://127.0.0.1:8000/static/images/Badges/13.jpg
+        url = "http://127.0.0.1:8000/static/images/Badges/stu_id.jpg"
         qrcode1 = qrcode.make(url)
         size = 800, 800
 
         qrcode_img = qrcode1.resize(size, Image.ANTIALIAS)
-        qrcode_img.save(os.path.join(BASE_DIR,"static/images/Badges/qrcodeimage.jpg"))
-        
         img_bg = Image.open(os.path.join(BASE_DIR,"static/images/Badges/achievementsports.jpg"))
+        
         position = (img_bg.size[0] - qrcode_img.size[0], img_bg.size[1] - qrcode_img.size[1])
         img_bg.paste(qrcode_img, position)
-
-        # fname = f"qr_code-{self.name}.jpeg"
-        # buffer = io.BytesIO()
-        # qrcode_img.save(buffer,'JPEG')       # 'path/of/dest.png'
         
-        img_path = os.path.join(BASE_DIR,"static/images/Badges/qrcodeimage.jpg")
+        img_path = os.path.join(BASE_DIR,"static/images/Badges/input_image.jpg")
         img_bg.save(img_path, 'JPEG')
+
+        fname = f'qr_code-{self.name}.png'
+        buffer = io.BytesIO()
         
-        # self.qr_code.save(fname, File(buffer), save=False) # destination_file
+        qrcode_img.save(buffer,'PNG')       # 'path/of/dest.png'
+        
+        self.qr_code.save(fname, File(buffer), save=False) # destination_file
         super(QRcodeModel, self).save(*args, **kwargs)
 
         img_bg.close()
