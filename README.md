@@ -51,3 +51,21 @@ Eg. git remote add Badging_system_krunal https://github.com/gitkp11/Badging_syst
 
 ## update requirements.txt
 1. pip freeze > requirements.txt
+
+## SET UP ENVIRONMENT VARIABLE IN UBUNTU
+1. sudo gedit /etc/environment
+paste your environement variable here
+eg. EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
+2. source /etc/environment
+3. gedit ~/.profile
+paste your environement variable here
+eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
+4. source ~/.profile
+5. sudo gedit /etc/profile
+paste your environement variable here
+eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
+6. source /etc/profile
+7. sudo gedit ~/.bashrc
+paste your environement variable here
+eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
+8. source ~/.bashrc

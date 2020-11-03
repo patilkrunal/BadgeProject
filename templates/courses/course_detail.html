@@ -3,83 +3,62 @@
 
 {% block content %}
 
-
   <div><h1>.</h1></div>
   <div><h1>.</h1></div>
 
+  <!-- single course section -->
+  <section class="single-course spad pb-0 container">
+    <img src="img/courses/single.jpg">
 
-<!-- search section -->
-<section class="search-section ss-other-page container">
-  <div class="search-warp">
-    <div class="section-title text-white">
-      <h2><span>Search your course</span></h2>
-    </div>
     <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <!-- search form -->
-        <form class="course-search-form">
-          <input type="text" placeholder="Course">
-          <input type="text" class="last-m" placeholder="Category">
-          <button class="site-btn btn-dark">Search Course</button>
-        </form>
+      <div data-setbg="img/authors/2.jpg"></div>
+      <p> Featured Course <strong> {{course.title|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <p> Tutor <strong> {{course.creator|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <p> Students <strong> {{ student_membership.all.count }} Registered Students </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <p>Reviews <span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star is-fade"></i></span></p>
+    </div>
+    
+    <div class="row">
+      <div>
+        <p><h4>Course Description</h4>
+        {{course.description}}</p>
+
+        <p><h4>The Instructor</h4>
+        Mr {{course.creator}}, is a really talented Person and has bagged various certifications, 
+        molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+        massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed 
+        bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum 
+        dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, 
+        molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+        massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
       </div>
-    </div>
-  </div>
-</section>
-<!-- search section end -->
 
-
-<!-- single course section -->
-<section class="single-course spad pb-0 container">
-  <img src="img/courses/single.jpg">
-
-  <div class="row">
-    <div data-setbg="img/authors/2.jpg"></div>
-    <p> Featured Course <strong> {{course.title|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <p> Tutor <strong> {{course.creator|capfirst}} </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <p> Students <strong> {{ student_membership.all.count }} Registered Students </strong></p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <p>Reviews <span class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star is-fade"></i></span></p>
-  </div>
-  
-  <div class="row">
-    <div>
-      <p><h4>Course Description</h4>
-      {{course.description}}</p>
-
-      <p><h4>The Instructor</h4>
-      Mr {{course.creator}}, is a really talented Person and has bagged various certifications, 
-      molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
-      massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed 
-      bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum 
-      dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, 
-      molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
-      massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
-    </div>
-
-    {% if user.is_authenticated %}
-      <button class="site-btn btn-dark">
-        <a href="{% url 'memberships:add_members' %}" class="highlight">Add members</a>
-      </button>
-    {% endif %}
-
-    <h4>Members In This Course</h4>
-    <h6>.</h6>
-    <table border="1" style="width:800px">      
-      {% if student_membership %}
-        {% for l in student_membership %}
-          {% if l.course.pk == course.pk %}
-            <tr>
-              <td><ul>{{ l.student_name}}</ul></td>
-              <td><ul>{{ l.email_id }}</ul></td>
-            </tr>
-          {% endif %}
-        {% endfor %} 
-      {% else %}
-        <p>There are no members.</p>
+      {% if user.is_authenticated %}
+        <button class="site-btn btn-dark">
+          <a href="{% url 'memberships:add_members' %}" class="highlight">Add members</a>
+        </button>
       {% endif %}
-    </table>
-  </div>
-  
-</section>
+
+      <h4>Members In This Course</h4>
+      <h6>.</h6>
+      <table border="1" style="width:800px">  
+
+        {% if student_membership %}
+          {% for student in student_membership %}
+            {% if student.course.pk == course.pk %}
+              <tr>
+                <td><ul>{{ student.student_name}}</ul></td>
+                <td><ul>{{ student.email_id }}</ul></td>
+              </tr>
+            {% endif %}
+          {% endfor %} 
+        {% else %}
+          <p>There are no members assigned in this course.</p>
+        {% endif %}
+
+      </table>
+    </div>
+    
+  </section>
 
 {% endblock %}

@@ -1,13 +1,13 @@
 from django.core.files import File
 from PIL import Image, ImageDraw
 from django.db import models
-from io import BytesIO
-import io
 import qrcode
+import io
 import os
 
 from BadgeProject.settings import BASE_DIR
 from memberships.models import StudentMembership
+
 
 class QRcodeModel(models.Model):
     name = models.CharField(max_length=200)
@@ -17,10 +17,7 @@ class QRcodeModel(models.Model):
         return str(self.name)
 
     def save(self, *args, **kwargs):
-        # create qr-code image
-        # qrcode = qrcode.QRCode(box_size=2)
-        # url = "http://127.0.0.1:8000/static/images/Badges/teams/" + "Course" + "/" + "studentname" + "_" + "studentid" + ".jpg"
-        url = "http://127.0.0.1:8000/static/images/Badges/teams/dsa/suraj_25.jpg"
+        url = "http://127.0.0.1:8000/static/images/Badges/stu_id.jpg"
         qrcode1 = qrcode.make(url)
         size = 800, 800
 
@@ -34,16 +31,13 @@ class QRcodeModel(models.Model):
         img_bg.save(img_path, 'JPEG')
 
         fname = f'qr_code-{self.name}.png'
-        # buffer = BytesIO()
         buffer = io.BytesIO()
         
         qrcode_img.save(buffer,'PNG')       # 'path/of/dest.png'
-        # destination_file = open(buffer, 'rb')   # 'path/of/dest.png'
         
         self.qr_code.save(fname, File(buffer), save=False) # destination_file
         super(QRcodeModel, self).save(*args, **kwargs)
 
-        # destination_file.close()
         img_bg.close()
         qrcode_img.close()
 

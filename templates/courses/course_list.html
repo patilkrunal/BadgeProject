@@ -3,54 +3,37 @@
 
 {% block content %}
 
-<div><h1>.</h1></div>
-<div><h1>.</h1></div>
+  <div><h1>.</h1></div>
+  <div><h1>.</h1></div>
 
-<section class="single-course spad pb-0">
-  <div class="container">
+  <section class="single-course spad pb-0">
+    <div class="container">
 
-    <!-- search section -->
-    <section class="search-section ss-other-page">
-      <div class="search-warp">
-        <div class="section-title text-white">
-          <h2><span>Search your course</span></h2>
-        </div>
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <!-- search form -->
-            <form class="course-search-form">
-              <input type="text" placeholder="Course">
-              <input type="text" class="last-m" placeholder="Category">
-              <button class="site-btn btn-dark">Search Course</button>
-            </form>
+      <!-- search section -->
+      {% include 'courses/search_course.html' %}
+
+      {% if user.is_authenticated %}
+        <button class="site-btn btn-dark">
+          <a href="{% url 'courses:course_create' %}" class="highlight">Add Course</a>
+        </button>
+      {% endif %}
+
+      <div>
+        <h3>All Courses</h3>
+        
+        {% for course in courses%}
+          <div class="row">
+            <div>
+              <a href="{% url 'courses:course_detail' course.slug %}"><h3>{{course.title|capfirst}}</h3></a>
+              <p>{{course.description}}</p>
+              <div>{ {student_membership.all.count } } Students</div>
+              <div data-setbg="{% static 'webuni/img/authors/2.jpg' %}"></div>
+              <p>{{ course.duration|capfirst }} course.duration</p>
+              <p> Tutor : {{course.creator|capfirst}}</p>
+            </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-    </section>
-    <!-- search section end -->
-
-    {% if user.is_authenticated %}
-      <button class="site-btn btn-dark">
-        <a href="{% url 'courses:create' %}" class="highlight">Add Course</a>
-      </button>
-    {% endif %}
-
-    <div>
-      <h3>All Courses</h3>
-      
-      {% for course in courses%}
-        <div class="row">
-          <div>
-            <a href="{% url 'courses:course_detail' course.slug %}"><h3>{{course.title|capfirst}}</h3></a>
-            <p>{{course.description}}</p>
-            <div>120 Students</div>
-            <div data-setbg="{% static 'webuni/img/authors/2.jpg' %}"></div>
-            <p>{{ course.duration|capfirst }} course.duration</p>
-            <p> Tutor : {{course.creator|capfirst}}</p>
-          </div>
-        </div>
-      {% endfor %}
     </div>
-  </div>
-</section>
+  </section>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_save
+# from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -15,9 +15,6 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
-
-        # profile = Profile(user=self)
-        # profile.save()
 
         img = Image.open(self.profile_pic.path)
         if img.height >100 or img.width>100:

@@ -1,16 +1,18 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import RedirectView
+from django.shortcuts import render, redirect
 from django.views import generic
-import os
+from django.db.models import Q
 import csv
 
-from BadgeProject.settings import BASE_DIR
-from courses.models import Course
-from .models import StudentMembership
+
+from memberships.models import StudentMembership
 from qrcodeapp.models import QRcodeModel
-from .badge_generator import generate_badge
-from .forms import AddMembers
+from courses.models import Course
+
+from memberships.badge_generator import generate_badge
+from memberships.forms import AddMembers
+from BadgeProject.settings import BASE_DIR
 
 
 class StudentsListView(generic.ListView):
@@ -26,16 +28,18 @@ class StudentsListView(generic.ListView):
 
     @login_required
     def add_members(request):
-      if request.method == 'POST':
-        form = AddMembers(request.POST, request.FILES)
-        if form.is_valid():
-          instance = form.save(commit=False)
-          instance.author = request.user
-          instance.save()
-          return redirect('courses:course_list')
-      else:
-        form = AddMembers()
-      return render(request, 'memberships/add_members.html', { 'form': form })
+        if request.method == 'POST':
+            form = AddMembers(request.POST, request.FILES)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.author = request.user
+                instance.save()
+
+                return redirect('courses:course_list')
+        else:
+            form = AddMembers()
+        
+        return render(request, 'memberships/add_members.html', { 'form': form })
 
 
 # class CourseDetailRedirect(RedirectView):
@@ -53,7 +57,6 @@ class StudentsListView(generic.ListView):
 #         return reverse('courses:course_detail', course.slug)
 
 
-from django.db.models import Q
 class SearchResultsView(generic.ListView):
     model = StudentMembership
     template_name = 'memberships/search_results.html'
@@ -64,7 +67,7 @@ class SearchResultsView(generic.ListView):
             Q(email_id__icontains=query) | Q(student_name__icontains=query)
         )
 
-        output_file_path = os.path.join(BASE_DIR,"input.csv")
+        output_file_path = os.path.join(BASE_DIR, "input.csv")
         with open(output_file_path, 'w', newline='') as file:
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
@@ -75,19 +78,5 @@ class SearchResultsView(generic.ListView):
 
     def press_my_buttons(request):
         if request.POST:
-            # Run your script here
             print("Got the POST request")
         return render(request, 'memberships/search_results.html')
-
-
-# def badge_generator_view(request):
-#     name = "Welcome to"
-#     obj = QRcodeModel.objects.get(id=1)
-
-#     context = {
-#         'name': name,
-#         'obj': obj,
-#         'img_url': generate_badge(request)
-#     }
-
-#     return render(request, 'qrcodeapp/badge_wIth_QRcode.html', context)
