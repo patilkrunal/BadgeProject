@@ -1,0 +1,1 @@
+web: gunicorn BadgeProject.wsgi --log-file -

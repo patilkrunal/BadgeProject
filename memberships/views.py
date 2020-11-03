@@ -3,8 +3,7 @@ from django.views.generic import RedirectView
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.db.models import Q
-import csv
-
+import csv, os
 
 from memberships.models import StudentMembership
 from qrcodeapp.models import QRcodeModel
@@ -76,7 +75,18 @@ class SearchResultsView(generic.ListView):
 
         return object_list
 
-    def press_my_buttons(request):
-        if request.POST:
-            print("Got the POST request")
-        return render(request, 'memberships/search_results.html')
+    # def press_my_buttons(request):
+    #     if request.POST:
+    #         print("Got the POST request")
+    #     return render(request, 'memberships/search_results.html')
+
+
+
+
+def badge_generator_view(request):
+    
+    context = {
+        'img_url': generate_badge(request)
+    }
+
+    return render(request, 'memberships/badge_wIth_QRcode.html', context)
