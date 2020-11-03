@@ -4,18 +4,20 @@
   
   {% if not object_list %}
       <h3>NO BADGES TO DISPLAY</h3>
+  {% else %}
+
+    {% for member in object_list %}
+      <li>
+        {{ member.id }}, {{ member.student_name }}, {{ member.email_id }}, {{ member.course }}
+        
+        <form method="post" action="{% url 'memberships:badge_generator_view' %}">
+            {% csrf_token %}
+            
+            <button type="submit" value="Submit">Download Badge</button>
+        </form>
+
+      </li>
+    {% endfor %}
+  
   {% endif %}
-
-  {% for member in object_list %}
-    <li>
-      {{ member.student_name }}, {{ member.email_id }}, {{ member.id }}, {{ member.course }}
-      
-      <form method="post" action="{% url 'memberships:badge_generator_view' %}">
-          {% csrf_token %}
-          
-          <button type="submit" value="Submit">Download Badge</button>
-      </form>
-
-    </li>
-  {% endfor %}
 </ul>

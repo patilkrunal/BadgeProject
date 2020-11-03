@@ -8,13 +8,13 @@
 
 **Virtualenv modules installation (Unix based systems)**\
 
-3. virtualenv env
-4. source env/bin/activate
+3. virtualenv myenv
+4. source myenv/bin/activate
 
 **Virtualenv modules installation (Windows based systems)**\
 
-3. virtualenv env
-4. .\env\Scripts\activate
+3. virtualenv myenv
+4. .\myenv\Scripts\activate
 
 **Install modules**
 
@@ -69,3 +69,6 @@ eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
 paste your environement variable here
 eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
 8. source ~/.bashrc
+
+
+## deploy app on pythonanywhere
