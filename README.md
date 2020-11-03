@@ -18,7 +18,7 @@
 
 **Install modules**
 
-5. pip3 install -r requirements.txt
+5. pip install -r requirements.txt
 
 **Create tables**
 
@@ -72,3 +72,9 @@ eg. export EMAIL_HOST_USER="sureshmumbai2017@gmail.com"
 
 
 ## deploy app on pythonanywhere
+1. open bash
+2. $ pwd
+3. $ git clone https://github.com/gitkp11/BadgeProject.git
+4. $ mkvirtualenv --python=/usr/bin/python3.8
+5. $ pip install -r requirements.txt
+6. $ 
