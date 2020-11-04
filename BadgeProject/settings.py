@@ -1,6 +1,7 @@
 from pathlib import Path
 import os, sys
-import dj_database_url  # deployment
+from os import environ
+# import dj_database_url  # deployment
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -13,17 +14,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # ------------------------------------------------------------------------------
-# DEBUG = True
-DEBUG = False # deployment
+DEBUG = True
+# DEBUG = False # deployment
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', '127.0.0.1', '.herokuapp.com'] # deployment
+ALLOWED_HOSTS = ['127.0.0.1', '*', '.herokuapp.com'] # deployment
 
 
 # Application definition
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', # deployment
-    'django.contrib.staticfiles', # deployment
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -178,22 +178,14 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 
-# # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-# LOGIN_REDIRECT_URL = 'home'
-
-# # https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
-# # ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
-
 # https://django-allauth.readthedocs.io/en/latest/installation.html?highlight=backends
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
-
 
 # SMTP CONFIGURATIONS
 # # ------------------------------------------------------------------------------
@@ -233,6 +225,11 @@ ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = False
 ACCOUNT_PASSWORD_MIN_LENGTH = 6
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
+# OPENCV2 CONFIGURATION FILES
+environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+environ["QT_SCALE_FACTOR"] = "1"
 
 # deployment
 # ------------------------------------------------------------------------------

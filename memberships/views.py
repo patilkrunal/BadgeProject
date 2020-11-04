@@ -61,32 +61,26 @@ class SearchResultsView(generic.ListView):
     template_name = 'memberships/search_results.html'
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = StudentMembership.objects.filter(
-            Q(email_id__icontains=query) | Q(student_name__icontains=query)
-        )
+        query = self.request.GET.get('q')               # accept the search term and put it in query variable
+        if query:                                       # if the query variable is not none
+            object_list = StudentMembership.objects.filter(     # filter the StudentMembership model to check if query exists in Q(email_id) or in (student_name)
+                Q(email_id__icontains=query) | Q(student_name__icontains=query) # if it exists create list in object list
+            )
 
-        output_file_path = os.path.join(BASE_DIR, "input.csv")
-        with open(output_file_path, 'w', newline='') as file:
-            writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+            # output_file_path = os.path.join(BASE_DIR, "input.csv")      # dump whole object_list in input.csv file 
+            # with open(output_file_path, 'w', newline='') as file:
+            #     writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
-            for member in object_list:
-                writer.writerow([member.student_name, member.email_id, member.id, member.course])
+            #     for member in object_list:
+            #         writer.writerow([member.student_name, member.email_id, member.id, member.course])
 
-        return object_list
-
-    # def press_my_buttons(request):
-    #     if request.POST:
-    #         print("Got the POST request")
-    #     return render(request, 'memberships/search_results.html')
+            return object_list      # return the object list
 
 
-
-
-def badge_generator_view(request):
+def badge_generator_view(request, member_id):
     
     context = {
-        'img_url': generate_badge(request)
+        'img_url': generate_badge(request, member_id)
     }
 
     return render(request, 'memberships/badge_wIth_QRcode.html', context)

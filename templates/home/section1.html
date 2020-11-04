@@ -9,10 +9,14 @@
     <div class="video-overlay header-text">
       <div class="caption">
         <div>
+
+          {% comment %} 1ST STEP: QUERY YOUR SEARCH TERM HERE {% endcomment %}
+
           <h6>Search for your badge</h6>
           <form action="{% url 'memberships:search_results' %}" method="get">
-            <input name="q" type="text" placeholder="Enter email id">
+            <input name="q" type="text" placeholder="Enter email id or username">
           </form>
+        
         </div>
         <h6>Now it's easier to</h6>
         <h2><em>Get Your</em> Skills Recognized</h2>
@@ -39,7 +43,7 @@
                 to worry is about earning badges and polishing your skills, and 
                 recruiters will directly contact you.</p>
                 <!-- <p class="hidden-sm"></p> -->
-                <div class="scroll-to-section"><a href="#section2">Register</a></div>
+                {% comment %} <div class="scroll-to-section"><a href="#section2">Register</a></div> {% endcomment %}
             </div>
             </div>
           </div>
@@ -55,7 +59,7 @@
                 their skills and awarding them badges according their performance in 
                 courses. And help recruiters to get best talent.</p>
                 <!-- <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p> -->
-                <div class="scroll-to-section"><a href="#section3">Register</a></div>
+                {% comment %} <div class="scroll-to-section"><a href="#section3">Register</a></div> {% endcomment %}
             </div>
             </div>
           </div>
@@ -71,7 +75,7 @@
                 colleges in India. Recruiter searching for particular skills can sort 
                 the students and hire students directly by seeing Students profiles </p>
                 <!-- <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p> -->
-                <div class="scroll-to-section"><a href="#section4">Register</a></div>
+                {% comment %} <div class="scroll-to-section"><a href="#section4">Register</a></div> {% endcomment %}
             </div>
             </div>
           </div>

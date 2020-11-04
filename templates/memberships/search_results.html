@@ -10,7 +10,7 @@
     <li>
       {{ member.student_name }}, {{ member.email_id }}, {{ member.id }}, {{ member.course }}
       
-      <form method="post" action="{% url 'memberships:badge_generator_view' %}">
+      <form action="{% url 'memberships:badge_generator_view' member.id %}" method="post">
           {% csrf_token %}
           
           <button type="submit" value="Submit">Download Badge</button>

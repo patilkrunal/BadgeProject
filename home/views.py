@@ -8,6 +8,6 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['courses'] = Course.objects.all()
+        context['courses'] = Course.objects.all()[:15]
         
         return context

@@ -19,7 +19,7 @@ class CourseListView(ListView):
             form = CreateCourse(request.POST, request.FILES)
             if form.is_valid():
                 instance = form.save(commit=False)
-                instance.author = request.user
+                form.instance.creator = request.user
                 instance.save()
                 return redirect('courses:course_list')
         else:
