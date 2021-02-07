@@ -1,0 +1,98 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <section class="single-course spad mt-5 pt-5 pb-0 container">
+    <h4 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">{{course.title|capfirst}}</h4>
+    <div class="row">
+      <div class="col-md-7">
+        <img src="{% static 'images/courses/courses-01.jpg' %}" alt="" class="w-100" />
+      </div>
+
+      <div class="col-md-5">
+        <div class="row align-items-center h-100">
+          <div class="col" style="align-self: normal;">
+            <p> Course created Date <strong style="float: right;"> {{course.created_at|date:'M d, Y'}} </strong></p>
+            <p> Tutor <strong style="float: right;"> {{course.creator|capfirst}} </strong></p>
+            <p> Students <strong style="float: right;"> {{ student_membership.all.count }} Registered Students </strong></p>
+            <p>Reviews <span class="rating" style="float: right;">
+              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star is-fade"></i></span>
+            </p>
+            <p class="description"> Course Description <strong> {{course.description}} </strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+<<<<<<< HEAD
+      {% if user.is_authenticated %}
+      <div class="col-2 pr-0">
+        <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail m-0 p-0" alt="profile" style="height:100%;">
+      </div>
+      {% endif %}
+=======
+      <div class="col-2 pr-0">
+        <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail m-0 p-0" alt="profile" style="height:100%;">
+      </div>
+>>>>>>> a66239a5d7340750dc190f3c577810f98e78fe6e
+      <div class="col-10 mt-0">
+        <p><h4>The Instructor</h4>
+        Mr {{course.creator}}, is a really talented Person and has bagged various certifications, 
+        molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+        massa nisl posuere ipsum, ut vulputate mauris ligula a metus. Aenean vel congue diam, sed 
+        bibendum ipsum. Nunc vulputate aliquet tristique. Integer et pellentesque urna. Lorem ipsum 
+        dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu efficitur. Sed ligula nulla, 
+        molestie quis ligula in, eleifend rhoncus ipsum. Donec ultrices, sem vel efficitur molestie, 
+        massa nisl posuere ipsum, ut vulputate mauris ligula a metus. </p>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-9"><h4 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">Members In This Course</h4></div>
+      <div class="col-3" style="text-align: right;">
+        {% if user.is_authenticated %}
+          <div class="main-button more-courses"><a rel="nofollow" href="{% url 'memberships:add_members' %}">Add members</a></div>
+        {% endif %}
+      </div>
+
+      <table class="table table-striped mt-3 table-bordered" border="1" style="width: 100%;">  
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Email Id</th>
+            <th>Download Badge</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% if student_membership %}
+            {% for student in student_membership %}
+              {% if student.course.pk == course.pk %}
+                <tr>
+                  <td scope="row"><ul>{{ student.student_name}}</ul></td>
+                  <td><ul>{{ student.email_id }}</ul></td>
+
+                  <td>
+                    <form action="{% url 'memberships:badge_generator_view' student.id %}" method="post">
+                    {% csrf_token %}
+                    <input class='btn btn-sm btn-info' type="submit" value="Download Badge">
+                  </form>
+                  </td>
+
+                </tr>
+              {% endif %}
+            {% endfor %} 
+          {% else %}
+            <p>There are no members assigned in this course.</p>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    
+  </section>
+
+{% endblock %}
+        

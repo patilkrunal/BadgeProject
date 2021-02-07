@@ -1,0 +1,42 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <h1 class="entry-title">{% block blockname %} Profile {% endblock blockname %} </h1>
+
+{% block content %}
+  <div class="container mt-5 pt-5" style="color: #white;">
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" style="width:150px; height:150px;" src="{{ user.profile.profile_pic.url }}">
+        <div class="media-body">
+          <h2 class="account-heading  display-4 pt-4 pl-4 mb-0">{{ user.username }}</h2>
+          <p class="text-primary pl-4" style="font-size: 20px;">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <h5><legend class="border-bottom mb-4 pt-4 display-3 text-center"> PROFILE</legend></h5>
+      <form method="POST" enctype="multipart/form-data" class="">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+
+        <div class="main-button form-group">
+          <button class="btn btn-outline-warning" type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

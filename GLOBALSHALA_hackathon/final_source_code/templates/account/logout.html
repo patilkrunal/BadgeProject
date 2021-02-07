@@ -1,0 +1,40 @@
+<<<<<<< HEAD
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log out{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 pt-5">
+  <h2 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">Sign Out</h2>
+  <h5>Are you sure you want to sign out?</h5>
+  <form method="post" action="{% url 'account_logout' %}" class="password_reset">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="form-actions">
+      <button class="btn btn-danger" type="submit">Sign Out</button>
+    </div>
+  </form>
+</div>
+=======
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log out{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 pt-5">
+  <h2 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">Sign Out</h2>
+  <h5>Are you sure you want to sign out?</h5>
+  <form method="post" action="{% url 'account_logout' %}" class="password_reset">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="form-actions">
+      <button class="btn btn-danger" type="submit">Sign Out</button>
+    </div>
+  </form>
+</div>
+>>>>>>> a66239a5d7340750dc190f3c577810f98e78fe6e
+{% endblock content %}

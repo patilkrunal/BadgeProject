@@ -1,0 +1,66 @@
+EVALUATION PARAMETER
+PROTOTYPE EVALUATION PARAMETERS:
+Code quality
+
+Technology, architecture
+Quality and level of code
+Algorithms, Web APIs,creativity, logic, framework
+Design
+
+User interface
+Use of current technologies
+Overall usability
+
+Functionality and scalability
+Lesser bugs, Collaborative tools, devOps automation
+Implementation
+
+Comprehensiveness of the app in terms of functionality and working given the idea/concept.
+Evaluation Parameters for Idea Submission:
+Your solution will be evaluated based on the following parameters:
+
+Concept
+Understanding of the problem being addressed
+Background research on existing techniques
+Creativity
+Novelty and innovativeness of the idea
+Maturity of technology used
+Impact
+Practical usability potential
+Viability on a global scale
+Implementation
+Feasibility and scalability
+Complexity and constraints
+
+----------------------------------------------------------------------
+Your team needs to submit the prototype on the HackerEarth platform. 
+There are a few fields marked mandatory - PPT, Source Code. 
+But apart from these two mandatory fields, you also need to make sure
+that you submit everything with respect to your prototype on the 
+platform. For example, if you have used GitHub, you can provide 
+the GitHub link under the field name 'Repository Link' or 'Demo Link'.
+If you have a video of your prototype demo, you can share that as well. 
+It is better if you also provide the Instructions to Run your prototype. 
+Submitting all the necessary details will help the Globalshala judges 
+to look back at your submissions later to decide the winners. The PPT 
+you submit can be elaborate in terms of the features of your prototype,
+the back story (if you wish to explain), the future scope, the methodology
+used etc. But the presentation time provided has to be used optimally, 
+as described in the points below.
+The submissions should be made on the platform by 10 PM on 6th Oct.
+Each team will get 10 mins to present and 5 mins for QnA by the judges.
+Do not exceed your 10 minutes presentation time.
+Since this is the prototype round, you are expected to give a quick 
+abstract on what your project is and directly begin the demo of your 
+prototype. 
+We will be running on strict timelines for each team and thus, spend 
+your presentation time wisely. It is suggested that you practice the 
+presentation with your teammates beforehand to avoid any last-minute
+hassles.
+If there is a lot of background noise from your end during the presentation,
+please go on mute so that the judges can listen to your team members
+presenting at that time.
+The results will be announced a few days after the finale is over. 
+We will update all teams via the hackathon page's overview section.
+If any of your team members are going to be absent, please inform 
+that in advance.

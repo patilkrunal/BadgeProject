@@ -1,0 +1,221 @@
+<<<<<<< HEAD
+<!-- TemplateMo 557 Grad School  https://templatemo.com/tm-557-grad-school -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="{% static 'images/favicon.ico' %}" rel="icon">
+    
+    {% block css %}
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <link href="{% static 'css/base.css' %}" rel="stylesheet">
+      
+      <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+      <link href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+      <link href="{% static 'css/templatemo-grad-school.css' %}" rel="stylesheet">
+      <link href="{% static 'css/owl.css' %}" rel="stylesheet">
+      <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
+      
+      <script src="https://kit.fontawesome.com/4e4ab773fc.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>GetYourBadge</title>
+  </head>
+
+  <body id="page-top">
+      {% include '_navbar.html' %}
+
+      {% block content %}
+      {% endblock content %}
+      
+      {% include '_footer.html' %}
+
+      {% block javascript %}
+        <script src="{% static 'jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/lightbox.js' %}"></script>
+        <script src="{% static 'js/tabs.js' %}"></script>
+        <script src="{% static 'js/video.js' %}"></script>
+        <script src="{% static 'js/slick-slider.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+      {% endblock javascript %}
+
+      <script>
+          $('.nav li:first').addClass('active');
+
+          var showSection = function showSection(section, isAnimate) {
+            var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+              $('body, html').animate({
+                scrollTop: reqSectionPos },
+              800);
+            } else {
+              $('body, html').scrollTop(reqSectionPos);
+            }
+
+          };
+
+          var checkSection = function checkSection() {
+            $('.section').each(function () {
+              var
+              $this = $(this),
+              topEdge = $this.offset().top - 80,
+              bottomEdge = topEdge + $this.height(),
+              wScroll = $(window).scrollTop();
+              if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                currentId = $this.data('section'),
+                reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').
+                siblings().removeClass('active');
+              }
+            });
+          };
+
+          $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+            if($(e.target).hasClass('external')) {
+              return;
+            }
+            e.preventDefault();
+            $('#menu').removeClass('active');
+            showSection($(this).attr('href'), true);
+          });
+
+          $(window).scroll(function () {
+            checkSection();
+          });
+      </script>
+
+  </body>
+=======
+    <!-- TemplateMo 557 Grad School  https://templatemo.com/tm-557-grad-school -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicons -->
+    <link href="{% static 'images/favicon.ico' %}" rel="icon">
+    
+    {% block css %}
+      <!-- Main Stylesheet File -->
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <link href="{% static 'css/base.css' %}" rel="stylesheet">
+      
+      <!-- Bootstrap CSS File -->
+      <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+      <!-- Libraries CSS Files -->
+      <link href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+      <link href="{% static 'css/templatemo-grad-school.css' %}" rel="stylesheet">
+      <link href="{% static 'css/owl.css' %}" rel="stylesheet">
+      <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
+      
+
+      {% comment %} search bar {% endcomment %}
+      <script src="https://kit.fontawesome.com/4e4ab773fc.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>GetYourBadge</title>
+  </head>
+
+  <body id="page-top">
+      {% include '_navbar.html' %}
+
+      {% block content %}
+      {% endblock content %}
+      
+      {% include '_footer.html' %}
+
+      <!-- JavaScript Libraries -->
+      {% block javascript %}
+        <script src="{% static 'jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/lightbox.js' %}"></script>
+        <script src="{% static 'js/tabs.js' %}"></script>
+        <script src="{% static 'js/video.js' %}"></script>
+        <script src="{% static 'js/slick-slider.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+      {% endblock javascript %}
+
+      <!-- Scripts -->
+      <!-- Bootstrap core JavaScript -->
+
+      <script>
+          //according to loftblog tut
+          $('.nav li:first').addClass('active');
+
+          var showSection = function showSection(section, isAnimate) {
+            var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+              $('body, html').animate({
+                scrollTop: reqSectionPos },
+              800);
+            } else {
+              $('body, html').scrollTop(reqSectionPos);
+            }
+
+          };
+
+          var checkSection = function checkSection() {
+            $('.section').each(function () {
+              var
+              $this = $(this),
+              topEdge = $this.offset().top - 80,
+              bottomEdge = topEdge + $this.height(),
+              wScroll = $(window).scrollTop();
+              if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                currentId = $this.data('section'),
+                reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').
+                siblings().removeClass('active');
+              }
+            });
+          };
+
+          $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+            if($(e.target).hasClass('external')) {
+              return;
+            }
+            e.preventDefault();
+            $('#menu').removeClass('active');
+            showSection($(this).attr('href'), true);
+          });
+
+          $(window).scroll(function () {
+            checkSection();
+          });
+      </script>
+
+  </body>
+>>>>>>> a66239a5d7340750dc190f3c577810f98e78fe6e
+</html>

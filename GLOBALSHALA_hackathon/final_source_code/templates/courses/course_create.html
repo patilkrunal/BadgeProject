@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <section class='container mt-5 pt-5'>
+    <div class="create-course">
+      <h4 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">Create awesome new courses</h4>
+      <div class="main-button more-studybranches" style="text-align:right;"><a rel="nofollow" href="{% url 'courses:branch_create' %}">Add branch of Study</a></div>
+      <form class="site-form" action="{% url 'courses:course_create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form|crispy }}
+        <input type="submit" value="Create">
+        
+      </form>
+    </div>
+    
+  </section>
+{% endblock %}

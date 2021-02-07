@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+  <section class='container mt-5 pt-5'>
+    <div class="search-Results">
+      <h4 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">Search Results</h4>
+      
+      {% if not object_list %} <h3>NO BADGES TO DISPLAY</h3> 
+      {% else %}
+        <table class="table table-striped mt-3 table-bordered" border="1" style="width: 100%; color:white;">  
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Student Email Id</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for student in object_list  %}
+              <tr>
+                <td scope="row"><ul>{{ student.student_name}}</ul></td>
+                <td><ul>{{ student.email_id }}</ul></td>
+                <td><ul>
+                  <form action="{% url 'memberships:badge_generator_view' student.id %}" method="post">
+                    {% csrf_token %}
+                    <input class='btn btn-sm btn-info' type="submit" value="Download Badge">
+                  </form>
+                </ul></td>
+              </tr>
+            {% endfor %} 
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}

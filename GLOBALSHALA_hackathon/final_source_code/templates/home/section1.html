@@ -1,0 +1,79 @@
+{% load static %}
+
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <source src="{% static 'images/homepage/course-video.mp4' %}" type="video/mp4" />
+    </video>
+    
+    <div class="video-overlay header-text">
+      <div class="caption">
+        
+        <form action="{% url 'memberships:search_results' %}" method="get">
+          <div class="search-box">
+            <input class="search-txt" type="text" name="q" placeholder="Enter email id or username">
+            <a href="{% url 'memberships:search_results' %}" class="search-btn">
+              <i class="fas fa-search search-icon"></i>
+            </a>
+          </div>
+        </form>
+        
+        <h2><em>Search for your badge</em></h2>
+        <h2><em>Get Your</em> Skills Recognized</h2>
+        <div class="main-button">
+          <div class="scroll-to-section"><a href="#section2">Discover more</a><div>
+        </div>
+      </div>
+    </div>  
+  </section>
+
+
+  <section class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="features-post">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-graduation-cap"></i>For Students</h4>
+              </div>
+              <div class="content-hide">
+                <p>Getting job of your interest is now more easy as now recruiters 
+                will come to you with help of our platform the only thing you have
+                to worry is about earning badges and polishing your skills, and 
+                recruiters will directly contact you.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post second-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-pencil"></i>For Teachers</h4>
+              </div>
+              <div class="content-hide">
+                <p>You can help your students to get better opportunities, by verifing 
+                their skills and awarding them badges according their performance in 
+                courses. And help recruiters to get best talent.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post third-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-book"></i>For recruiters</h4>
+              </div>
+              <div class="content-hide">
+                <p>Collection of more than 10,000 Student Profiles from over top 100 
+                colleges in India. Recruiter searching for particular skills can sort 
+                the students and hire students directly by seeing Students profiles </p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

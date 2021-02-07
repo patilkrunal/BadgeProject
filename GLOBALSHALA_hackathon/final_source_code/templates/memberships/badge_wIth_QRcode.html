@@ -1,0 +1,9 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}    
+  <section class='container mt-5 pt-5'>
+    <h4 style="text-align: center;font-size: 40px; font-weight: bold; color: #ffa710;">View Badge</h4>
+    <img src="{% static img_url %}" alt="Badge loading. Please wait..."  width="1200" height="800" />
+  </section>
+{% endblock content %}

@@ -1,0 +1,212 @@
+  #page-top{
+    background-image: url(../images/choosing-bg.jpg);
+    background-color: #172238;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: aliceblue;
+  }
+
+  .more-courses{
+    margin: auto;
+  }
+
+
+/*   HOME PAGE SEARCH BAR    */
+  .search-box{
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #f5a425;
+    height: 80px;
+    border-radius: 80px;
+    padding: 10px;
+  }
+  
+  .search-btn{
+    color: whitesmoke;
+    float: right;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f5a425;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: 0.4s;
+  }
+  
+  .search-box:hover > .search-txt{
+    width: 650px;
+    padding: 0 6px;
+  }
+  
+  .search-box:hover > .search-btn{
+    background: #f5a425;
+  }
+  
+  .search-txt{
+    font-weight: bolder;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: whitesmoke;
+    font-size: 32px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+  }
+
+  .search-icon{
+      font-size: 32px;
+  }
+  .search-icon:hover{
+    color: black;
+  }
+
+
+
+  /* COURSE LIST */
+
+  .all-courses{
+    width: min-content;
+    padding: 1rem;
+  }
+
+  .course-creation-date{
+    float: right;
+  }
+  .tutor-date{
+    font-weight: bold;
+    color: white;
+  }
+
+  .add-course-btn{
+    float: left;
+  }
+  .search-courses{
+    float: right;
+  }
+  .all-course-main{
+    justify-content: center;
+  }
+
+  .rightside-navitem{
+    float: right;
+  }
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  .navbar-nav{
+    font-weight: bold;
+  }
+
+  .footer{
+    position: inherit;
+    bottom: 0px;
+    width: 100%;
+  }
+  /* .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+  } */
+
+  /* course detail */
+  /* .single-course.spad.pb-0.container{
+    margin-top: 6rem;
+  } */
+  .image-container{
+    text-align:center;
+    width:100%; 
+    margin-left:-15px;
+  }
+
+
+  /* card item */
+  .card{
+    background-color: transparent!important;
+  }
+  .img{
+    height:150px;
+    width:100%;
+  }
+  
+  .item{
+    padding-left:5px;
+    padding-right:5px;
+  }
+  .item-card{
+    transition:0.5s;
+    cursor:pointer;
+  }
+  .item-card-title{  
+    font-size:15px;
+    transition:1s;
+    cursor:pointer;
+  }
+  .item-card-title i{  
+    font-size:15px;
+    transition:1s;
+    cursor:pointer;
+    color:#ffa710
+  }
+  .card-title i:hover{
+    transform: scale(1.25) rotate(100deg); 
+    color:#18d4ca;
+    
+  }
+  .card:hover{
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+  }
+  
+  .card::before, .card::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale3d(0, 0, 1);
+    transition: transform .3s ease-out 0s;
+    background: rgba(255, 255, 255, 0.1);
+    content: '';
+    pointer-events: none;
+  }
+  .card::before {
+    transform-origin: left top;
+  }
+  .card::after {
+    transform-origin: right bottom;
+  }
+  .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+    transform: scale3d(1, 1, 1);
+  }
+
+  .col-md-3.col-sm-6.item.all-courses{
+    max-width: 100%;
+  }
+  .col-md-5 .row.align-items-center.h-100 .col p{
+    font-size: 24px!important;
+  }
+
+  .col-md-5 .row.align-items-center.h-100 .col .description{
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .col-md-5 .row.align-items-center.h-100 .col .description strong{
+    float: right;
+    padding-top: 1rem;
+    text-align: justify;
+    line-height: normal;
+  }
+
+  .single-course.spad.mt-5.pt-5.pb-0.container .row.mt-3 .table.table-striped {
+    color: white;
+  }

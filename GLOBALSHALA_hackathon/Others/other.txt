@@ -1,0 +1,15 @@
+
+1. sudo apt install pipenv
+2. pipenv install --skip-lock
+3. pipenv install django
+4. pipenv shell
+5. pipenv lock
+6. django-admin.py startproject BadgeProject .
+7. python manage.py migrate
+8. python manage.py runserver
+
+
+
+EMAIL_HOST_PASSWORD="rmnovzlrqoexmptx"
+SECRET_KEY="jdk1z8p-gn++-fmtcm)6dagiaok*eozarqlte_1kuc3+tt4#u*"
+

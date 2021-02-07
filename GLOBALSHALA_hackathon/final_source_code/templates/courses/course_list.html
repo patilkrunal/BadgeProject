@@ -1,0 +1,55 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="container-fluid course-list single-course spad pb-0">
+  <div class="row">
+    <div class="col-1"></div>
+    
+    <div class="col-10 all-course-main">
+      <div class="section-heading">
+        <h2>All Course</h2>
+        {% if user.is_authenticated %}
+          <h2><a href="{% url 'courses:course_create' %}">Add Courses</a></h2>
+        {% endif %}
+      </div>
+
+      <div class="row">
+        {% for course in courses%}
+          <div class="col-md-3 col-sm-6 item all-courses">
+            <div class="card item-card card-block">
+              <a href="{% url 'courses:course_detail' course.slug %}">
+                <img src="{% static 'images/courses/courses-01.jpg' %}" alt="Course #1" style="width: 100%;">
+              </a>
+<<<<<<< HEAD
+              
+
+              <div class="text-button-pay">
+                <p class="tutor-date mb-0"> 
+                {% if user.is_authenticated %}
+                <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail m-1 p-0" alt="profile" style="width:10%;">
+                {% endif %}
+=======
+
+              <div class="text-button-pay">
+                <p class="tutor-date mb-0"> 
+                <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail m-1 p-0" alt="profile" style="width:10%;">
+>>>>>>> a66239a5d7340750dc190f3c577810f98e78fe6e
+                 : {{course.creator|capfirst}}
+                <span class="course-creation-date"> {{course.created_at|date:'M d, Y'}} </span></p>
+              </div>
+
+              <a href="{% url 'courses:course_detail' course.slug %}"><h3 class="item-card-title mb-0" style="font-size:1.5rem;">{{course.title|capfirst}}</h3></a>
+
+              <p class="card-text">{{course.description|truncatewords:10}}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+    <div class="col-1"></div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load static %}
+
+<section class="section courses" data-section="section4">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Choose Your Course</h2>
+        </div>
+      </div>
+
+      <div class="owl-carousel owl-theme">
+        {% for course in courses %}
+
+          <div class="col-md-3 col-sm-6 item all-courses">
+            <div class="item card item-card card-block">
+              <a href="{% url 'courses:course_detail' course.slug %}">
+                <img src="{% static 'images/courses/courses-01.jpg' %}" alt="Course #1" style="width: 100%;">
+              </a>
+
+              <div class="text-button-pay">
+                <p class="tutor-date mb-0"> 
+<<<<<<< HEAD
+                {% if user.is_authenticated %}
+                <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail my-1 p-0" alt="profile" style="width:10%;">
+                {% endif %}
+=======
+                <img src="{{ user.profile.profile_pic.url }}" class="img-fluid img-thumbnail my-1 p-0" alt="profile" style="width:10%;">
+>>>>>>> a66239a5d7340750dc190f3c577810f98e78fe6e
+                 : {{course.creator|capfirst}}
+                <span class="course-creation-date"> {{course.created_at|date:'M d, Y'}} </span></p>
+              </div>
+
+              <a href="{% url 'courses:course_detail' course.slug %}"><h3 class="item-card-title mb-0" style="font-size:1.5rem;">{{course.title|capfirst}}</h3></a>
+
+              <p class="card-text">{{course.description|truncatewords:10}}</p>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div>
+      <div class="main-button more-courses"><a rel="nofollow" href="{% url 'courses:course_list' %}">Check all Courses</a></div>
+
+    </div>
+  </div>
+</section>
